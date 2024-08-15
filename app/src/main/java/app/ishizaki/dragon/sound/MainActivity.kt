@@ -30,6 +30,32 @@ class MainActivity : AppCompatActivity() {
          true
          }
 
+        val pianoSound: MediaPlayer = MediaPlayer.create(this, R.raw.piano_sound)
+
+        binding.pianoImage.setOnTouchListener{ view, motionEvent ->
+            if(motionEvent.action == MotionEvent.ACTION_DOWN) {
+                binding.pianoImage.setImageResource(R.drawable.piano_playing_image)
+                pianoSound.seekTo(0)
+                pianoSound.start()
+            }else if (motionEvent.action == MotionEvent.ACTION_UP){
+                binding.pianoImage.setImageResource(R.drawable.piano_image)
+            }
+            true
+        }
+
+        val guitarSound: MediaPlayer = MediaPlayer.create(this, R.raw.guitar_sound)
+
+        binding.guitarImage.setOnTouchListener{ view, motionEvent ->
+            if(motionEvent.action == MotionEvent.ACTION_DOWN) {
+                binding.guitarImage.setImageResource(R.drawable.guitar_playing_image)
+                guitarSound.seekTo(0)
+                guitarSound.start()
+            }else if (motionEvent.action == MotionEvent.ACTION_UP){
+                binding.guitarImage.setImageResource(R.drawable.guitar_image)
+            }
+            true
+        }
+
 //        binding.drumImage.setOnClickListener {
 //            drumSound.seekTo(0)
 //            drumSound.start()
