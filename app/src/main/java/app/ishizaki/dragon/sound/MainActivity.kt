@@ -2,6 +2,7 @@ package app.ishizaki.dragon.sound
 
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.view.MotionEvent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -18,9 +19,20 @@ class MainActivity : AppCompatActivity() {
 
         val drumSound: MediaPlayer = MediaPlayer.create(this, R.raw.drum_sound)
 
-        binding.drumImage.setOnClickListener {
-            drumSound.seekTo(0)
-            drumSound.start()
-        }
+         binding.drumImage.setOnTouchListener{ view, motionEvent ->
+             if(motionEvent.action == MotionEvent.ACTION_DOWN) {
+                 binding.drumImage.setImageResource(R.drawable.drum_playing_image)
+                 drumSound.seekTo(0)
+                 drumSound.start()
+             }else if (motionEvent.action == MotionEvent.ACTION_UP){
+                 binding.drumImage.setImageResource(R.drawable.drum_image)
+             }
+         true
+         }
+
+//        binding.drumImage.setOnClickListener {
+//            drumSound.seekTo(0)
+//            drumSound.start()
+//        }
     }
 }
